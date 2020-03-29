@@ -109,6 +109,10 @@ def cwd(sample=False):
         new_ps.append('…')
         new_ps += ps[-($PL_PARTS-1):]
         ps = new_ps
+    
+    for i in range(len(ps)):
+        if ps[i] == '~':
+            ps[i] = '\uf015'
 
     ps_join = (' %s ' % $PL_SEP_THIN).join(ps)
     return Section(' %s ' % ps_join, *$PL_COLORS["cwd"])
@@ -116,13 +120,14 @@ def cwd(sample=False):
 
 @register_sec
 def branch(sample=False):
+    branch_icon = '\ufb2b'
     if sample:
         return [
-                Section('   hoge ', $PL_COLORS['branch'], 'YELLOW'),
-                Section('   piyo ', $PL_COLORS['branch'], 'GREEN'),
-                Section('   fuga ', $PL_COLORS['branch'], 'RED')]
+                Section(' {}  hoge '.format(branch_icon), $PL_COLORS['branch'], 'YELLOW'),
+                Section(' {}  piyo '.format(branch_icon), $PL_COLORS['branch'], 'GREEN'),
+                Section(' {}  fuga '.format(branch_icon), $PL_COLORS['branch'], 'RED')]
     if $PROMPT_FIELDS['curr_branch']():
-        return Section('  {curr_branch} ', $PL_COLORS['branch'], $PROMPT_FIELDS['branch_bg_color']()[1+len('background_'):-1])
+        return Section(' %s {curr_branch} ' % (branch_icon), $PL_COLORS['branch'], $PROMPT_FIELDS['branch_bg_color']()[1+len('background_'):-1])
 
 
 @register_sec
