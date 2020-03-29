@@ -176,6 +176,11 @@ def full_proc(sample=False):
 def who(sample=False):
     return Section(' {user}@{hostname} ', *$PL_COLORS["who"])
 
+@register_sec
+def lf(sample=False):
+    lf_Color = ("WHITE", "BLACK")
+    return Section('\n\ue0b0', *lf_Color)
+
 
 def prompt_builder(var, right=False, sample=False):
     if var == '!':
