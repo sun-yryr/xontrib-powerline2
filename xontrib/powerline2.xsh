@@ -186,6 +186,11 @@ def lf(sample=False):
     lf_Color = ("WHITE", "BLACK")
     return Section('\n\ue0b0', *lf_Color)
 
+@register_sec
+def ssh(sample=False):
+    color = ('#ffff05', 'BLACK')
+    return Section('\uf0e7 \uf13e  ', *color)
+
 
 def prompt_builder(var, right=False, sample=False):
     if var == '!':
